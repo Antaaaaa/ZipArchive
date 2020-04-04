@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Zipper</title>
+    <link rel="icon" href="styles/img/icon.png">
+    <link rel="stylesheet" href="styles/result.css">
+</head>
+    <body>
+    <div class="body">
+    <table class="table">
+        <tbody>
+        <tr>
+            <td>№</td>
+            <td>Name</td>
+            <td>Number of files</td>
+            <td>Files in archive</td>
+            <td>Password</td>
+            <td>Link</td>
+        </tr>
+        <tr th:each="archive : ${archives}">
+            <td><span th:text="${archive.getId()}"> Id </span></td>
+            <td><span th:text="${archive.getName()}"> Name </span></td>
+            <td><span th:text="${archive.getSize()}"> Number </span></td>
+            <td><table th:each="file : ${archive.getFileList()}">
+                <tr th:text="${file.getName()}"></tr>
+            </table></td>
+            <td>
+                <span th:text="${archive.getPassword()}">Password</span></td>
+            <td><a href="#" class="download" th:href="@{/result/{id}(id=${archive.getId()})}"><span>Download</span></a></td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/" class="button-home">Home</a>
+    </div>
+    </body>
+</html>
